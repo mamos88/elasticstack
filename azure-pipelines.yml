@@ -1,0 +1,32 @@
+variables:
+- group: aws-group
+- group: common
+
+trigger: none
+
+parameters:
+  - name: action
+    type: string
+    default: apply
+    values:
+      - apply
+      - destroy
+
+
+stages:
+
+- stage: Terraform_Run
+  displayName: terraform ${{parameters.action}}
+  jobs:
+  - job: ${{parameters.action}}
+    pool: $(agent_pool)
+    steps:
+    - template: templates/terraform-pre-setup-template.yml
+
+    - bash: terraform init
+      workingDirectory: '$(Build.SourcesDirectory)'
+      displayName: 'terraform init'
+    
+    - bash: terraform ${{parameters.action}} -var aws_access_key=$(aws_access_key_id_dev) -var aws_secret_key=$(aws_access_secret_key_dev) -var aws_key_fingerprint=$(aws_key_fingerprint) -auto-approve
+      workingDirectory: '$(Build.SourcesDirectory)'
+      displayName: 'terraform ${{parameters.action}}'

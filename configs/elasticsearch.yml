@@ -1,0 +1,18 @@
+cluster.name: my-cluster
+network.host: 0.0.0.0
+node.name: node-1
+node.roles: [ master ]
+network.publish_host: ip-10-0-0-100.us-east-2.compute.internal
+discovery.seed_hosts:
+  - 10.0.0.100:9300
+  - 10.0.1.100:9300
+  - 10.0.2.100:9300
+cluster.initial_master_nodes:
+  - node-1
+  - node-2
+  - node-3
+xpack.security.transport.ssl.enabled: true
+xpack.security.transport.ssl.verification_mode: certificate
+xpack.security.transport.ssl.client_authentication: required
+xpack.security.transport.ssl.keystore.path: elastic-certificates.p12
+xpack.security.transport.ssl.truststore.path: elastic-certificates.p12
