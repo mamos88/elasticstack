@@ -1,8 +1,8 @@
 cluster.name: my-cluster
 network.host: 0.0.0.0
-node.name: node-1
-node.roles: [ master ]
+node.name: node-2
 network.publish_host: ip-10-0-0-100.us-east-2.compute.internal
+node.roles: [ master ]
 discovery.seed_hosts:
   - 10.0.0.100:9300
   - 10.0.1.100:9300

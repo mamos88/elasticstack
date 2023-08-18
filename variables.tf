@@ -4,9 +4,15 @@ variable "aws_region" {
   default     = "us-east-2"
 }
 
+variable "password" {
+  description = "Password for Kibana users"
+  type        = string
+}
+
+
 variable "client_instance_type" {
   description = "elasticsearch Client Instance Type"
-  default = "t2.medium"
+  default = "t2.small"
 }
 
 variable "elasticsearch_server_instance_type" {
@@ -75,7 +81,7 @@ variable "elasticsearch_server_ami_id" {
 variable "elasticsearch_client_amazon_ami_id" {
   description = "AMI ID to use for elasticsearch server nodes"
   type        = string
-  default = "ami-0c0408c0144a15657" # Modify this with the Amazon client AMI you created
+  default = "ami-05410cf0f076b18fa" # Modify this with the Amazon client AMI you created
 }
 
 variable "elasticsearch_client_ubuntu_ami_id" {

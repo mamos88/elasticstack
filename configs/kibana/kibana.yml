@@ -1,0 +1,8 @@
+server.host: "0.0.0.0"
+server.shutdownTimeout: "5s"
+elasticsearch.hosts: [ "http://10.0.0.100:9200" ]
+elasticsearch.username: kibana_user
+elasticsearch.password: password123!
+elasticsearch.ssl.verificationMode: certificate
+elasticsearch.ssl.truststore.path: /usr/share/kibana/config/elastic-certificates.p12
+elasticsearch.ssl.truststore.password: ""
