@@ -7,7 +7,6 @@ resource "aws_instance" "elasticsearch-server-node" {
   subnet_id                   = aws_subnet.elasticsearch-lab-pub[count.index].id
   vpc_security_group_ids      = [aws_security_group.elasticsearch-sg.id]
   associate_public_ip_address = true
-  # user_data = file("conf/user-data.sh")
   user_data                   = base64encode(<<-EOF
         #!/bin/bash
         echo "Mounting EFS file system"
@@ -16,8 +15,8 @@ resource "aws_instance" "elasticsearch-server-node" {
         mount -t efs ${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch
         echo "${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch efs defaults,_netdev 0 0" >> /etc/fstab
         docker run -d --name elasticsearch-master-$HOSTNAME -p 9200:9200 -p 9300:9300 -e "ELASTIC_PASSWORD=${var.password}" mamos88/elasticsearch-master-$HOSTNAME
-        echo "Waiting 3 minutes to setup passwords"
-        sleep 180
+        echo "Waiting 2 minutes to setup passwords"
+        sleep 120
         docker exec elasticsearch-master-ip-10-0-0-100.us-east-2.compute.internal /usr/share/elasticsearch/bin/elasticsearch-users useradd kibana_user -p ${var.password} -r kibana_system
         docker exec elasticsearch-master-ip-10-0-0-100.us-east-2.compute.internal /usr/share/elasticsearch/bin/elasticsearch-users useradd admin -p ${var.password} -r superuser
         EOF
