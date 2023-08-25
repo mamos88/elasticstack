@@ -46,7 +46,7 @@ This repository was created to help individuals that want to quickly and easily 
    
 7. If Packer is installed, the AWS CLI is installed and the AWS profile is set up as per the instructions above, Packer should connect to AWS, provision an EC2 instance, run the elasticstack-install-amazon-linux.sh file also found in the server folder and eventually build an AMI.  
 
-#Need to update the documentation below.  This information is not valid for this project.*
+# Need to update the documentation below.  This information is not valid for this project.*
 
 ## Creating the Nomad/Consul Client Amazon Machine Image (AMI) Using Packer
 1. The steps for the client is simlilar to the server.  You need to be in the packer\client directory in the terminal.  
