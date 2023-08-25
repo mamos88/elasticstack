@@ -1,9 +1,9 @@
-# HashiCorp Nomad/Consul Sandbox Creation Code
-This repository was created to help individuals that want to quickly and easily provision a HashiCorp Nomad/Consul environment in AWS.  
+# Elastic Stack Sandbox Creation Code
+This repository was created to help individuals that want to quickly and easily provision an Elastic Stack environment in AWS.  
 
 # Disclaimer
 1. If you chose to build an environment in AWS using this code there will be resources provisioned that will cost you $$. Review the resources that will be provisioned prior to the installation.
-2. This repository should not be used to build your production environment and you should familiarize yourself with the proper security settings for running Nomad/Consul and Docker in AWS.  
+2. This repository should not be used to build your production environment and you should familiarize yourself with the proper security settings for running Elastic Stack and Docker in AWS.  
 
 # Pre-deployment Requirements
 1. You have an AWS account created
@@ -26,24 +26,27 @@ This repository was created to help individuals that want to quickly and easily 
 3. Once this is completed the test-profile profile will be configured
 
 ## Clone this repository
-1. On your local machine run **git clone https://github.com/mamos88/nomad-in-aws.git**
+1. On your local machine run **git clone https://github.com/mamos88/elasticstack**
 2. This should clone the repository down to your local machine so you can update the required inputs
 
-## Creating the Nomad/Consul Server Amazon Machine Image (AMI) Using Packer
+## Creating the Elastic Stack Server Amazon Machine Image (AMI) Using Packer
 1. The packer folder contains two sub folders; server and client folders
 2. It is recommended to build the server AMI first.  There are a few variables in the file that you should update and include:
    * ami_name
    * region
+   * source_ami
 3. At run time, you need to pass in the profile (which is *test-profile* based on the instructions above) and server_source_ami variables.  The server_source_ami would be the latest Amazon Linux AMI id in the region you will be deploying the environment.
 4. Obtain the latest Amazon Linux AMI id from the region you want to deploy the image. The AMI id will be used in the next step.
-5. You should check for the latest version of Nomad and Consul and update the nomad-server-amazon-linux.sh file with the latest version.  At the time of this writing the latest version of Nomad is 1.5.3.  Update the line with NOMAD_VERSION=1.5.3 to the desired version. Do the same for Consul, i.e., CONSUL_VERSION=1.15.2 to the desired version.
-6. On your local machine  navigate your terminal to the packer\server folder and run **packer build -var "profile=test-profile" -var "amazon_source_ami=ami-08333bccc35d71140" .**
+5. 
+6. 
 
    *NOTE: the server_source_ami value will most likely be different than in the example above since you would have obtained it yourself and it will be based on the region you select as well as if the source AMI has been updated since these instructions were written.*
 
    **Also, there is a period . at the end of the packer build command above, make sure you include that in the execution or you will observe and error**
    
-7. If Packer is installed, the AWS CLI is installed and the AWS profile is set up as per the instructions above, Packer should connect to AWS, provision an EC2 instance, run the nomad-install-amazon-linux.sh file also found in the server folder and eventually build an AMI.  
+7. If Packer is installed, the AWS CLI is installed and the AWS profile is set up as per the instructions above, Packer should connect to AWS, provision an EC2 instance, run the elasticstack-install-amazon-linux.sh file also found in the server folder and eventually build an AMI.  
+
+Need to update the documentation below.  This information is not valid for this project.
 
 ## Creating the Nomad/Consul Client Amazon Machine Image (AMI) Using Packer
 1. The steps for the client is simlilar to the server.  You need to be in the packer\client directory in the terminal.  

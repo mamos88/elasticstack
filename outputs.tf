@@ -15,6 +15,6 @@ output "ec2_nodes" {
 # }
 
 output "elasticsearch_url" {
-  value = "http://${aws_instance.elasticsearch-server-node[0].public_ip}:4646/ui"
+  value = "http://${aws_instance.elasticsearch-server-node[0].public_ip}:9200"
 }
 
