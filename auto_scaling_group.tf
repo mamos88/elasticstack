@@ -67,8 +67,8 @@ resource "aws_autoscaling_group" "elasticsearchDataColdASG" {
 # Elasticsearch Data Content ASG
 resource "aws_autoscaling_group" "elasticsearchDataContentASG" {
     name = "elasticsearchDataContentASG"
-    max_size = 2
-    min_size = 2
+    max_size = 1
+    min_size = 1
 
     vpc_zone_identifier = [for subnet in aws_subnet.elasticsearch-lab-pub: subnet.id]
     
