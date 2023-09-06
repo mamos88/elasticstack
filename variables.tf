@@ -68,7 +68,7 @@ variable "health_check" {
 variable "allowed_ip_network" {
   description = "Networks allowed in security group for ingress rules"
   type        = list(any)
-  default     = ["184.98.50.94/32", "10.0.0.0/16"] # Modify this with your local machine IP. Only replace the 174.26.226.144 with your IP.
+  default     = ["184.98.82.249/32", "10.0.0.0/16"] # Modify this with your local machine IP. Only replace the 174.26.226.144 with your IP.
 }
 
 # This is the AMI for the Server node.  Change it to match the one generated with Packer server AMI build
