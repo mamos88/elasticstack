@@ -13,7 +13,7 @@ resource "aws_launch_template" "ElasticsearchDataHotLC" {
         yum install -y amazon-efs-utils
         mount -t efs ${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch
         echo "${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch efs defaults,_netdev 0 0" >> /etc/fstab
-        docker run -d --name elasticsearch-data-hot-$HOSTNAME -p 9200:9200 -p 9300:9300 -e "ELASTIC_PASSWORD=${var.password}" -e "node.name=data-hot-$HOSTNAME" -e "network.publish_host=$HOSTNAME" mamos88/elasticsearch-data-hot
+        docker run -d --name elasticsearch-data-hot-$HOSTNAME -p 9200:9200 -p 9300:9300 -e "ELASTIC_PASSWORD=${var.password}" -e "node.name=data-hot-$HOSTNAME" -e "network.publish_host=$HOSTNAME" mamos88/elasticsearch-data-hot-v3
         EOF
      )
 }
@@ -33,7 +33,7 @@ resource "aws_launch_template" "ElasticsearchDataWarmLC" {
         yum install -y amazon-efs-utils
         mount -t efs ${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch
         echo "${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch efs defaults,_netdev 0 0" >> /etc/fstab
-        docker run -d --name elasticsearch-data-warm-$HOSTNAME -p 9200:9200 -p 9300:9300 -e "ELASTIC_PASSWORD=${var.password}" -e "node.name=data-warm-$HOSTNAME" -e "network.publish_host=$HOSTNAME" mamos88/elasticsearch-data-warm
+        docker run -d --name elasticsearch-data-warm-$HOSTNAME -p 9200:9200 -p 9300:9300 -e "ELASTIC_PASSWORD=${var.password}" -e "node.name=data-warm-$HOSTNAME" -e "network.publish_host=$HOSTNAME" mamos88/elasticsearch-data-warm-v3
         EOF
      )
 }
@@ -52,7 +52,7 @@ resource "aws_launch_template" "ElasticsearchDataColdLC" {
         yum install -y amazon-efs-utils
         mount -t efs ${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch
         echo "${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch efs defaults,_netdev 0 0" >> /etc/fstab
-        docker run -d --name elasticsearch-data-cold-$HOSTNAME -p 9200:9200 -p 9300:9300 -e "ELASTIC_PASSWORD=${var.password}" -e "node.name=data-cold-$HOSTNAME" -e "network.publish_host=$HOSTNAME" mamos88/elasticsearch-data-cold
+        docker run -d --name elasticsearch-data-cold-$HOSTNAME -p 9200:9200 -p 9300:9300 -e "ELASTIC_PASSWORD=${var.password}" -e "node.name=data-cold-$HOSTNAME" -e "network.publish_host=$HOSTNAME" mamos88/elasticsearch-data-cold-v3
         EOF
      )
 }
@@ -72,7 +72,7 @@ resource "aws_launch_template" "ElasticsearchDataContentLC" {
         yum install -y amazon-efs-utils
         mount -t efs ${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch
         echo "${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch efs defaults,_netdev 0 0" >> /etc/fstab
-        docker run -d --name elasticsearch-data-content-$HOSTNAME -p 9200:9200 -p 9300:9300 -e "ELASTIC_PASSWORD=${var.password}" -e "node.name=data-content-$HOSTNAME" -e "network.publish_host=$HOSTNAME" mamos88/elasticsearch-data-content
+        docker run -d --name elasticsearch-data-content-$HOSTNAME -p 9200:9200 -p 9300:9300 -e "ELASTIC_PASSWORD=${var.password}" -e "node.name=data-content-$HOSTNAME" -e "network.publish_host=$HOSTNAME" mamos88/elasticsearch-data-content-v3
         EOF
      )
 }
@@ -92,7 +92,7 @@ resource "aws_launch_template" "KibanaLC" {
         yum install -y amazon-efs-utils
         mount -t efs ${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch
         echo "${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch efs defaults,_netdev 0 0" >> /etc/fstab
-        docker run -d --name kibana-$HOSTNAME -p 5601:5601 mamos88/kibana
+        docker run -d --name kibana-$HOSTNAME -p 5601:5601 mamos88/kibana-v2
         EOF
      )
 }
