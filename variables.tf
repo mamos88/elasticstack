@@ -55,8 +55,8 @@ variable "health_check" {
    default = {
       "timeout"  = "10"
       "interval" = "20"
-      "path"     = "/"
-      "port"     = "8080"
+      "path"     = "/login"
+      "port"     = "5601"
       "unhealthy_threshold" = "2"
       "healthy_threshold" = "3"
     }
