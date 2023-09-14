@@ -111,8 +111,8 @@ resource "aws_autoscaling_group" "KibanaASG" {
 # Logstash ASG
 resource "aws_autoscaling_group" "LogstashASG" {
     name = "LogstashASG"
-    max_size = 1
-    min_size = 1
+    max_size = 0
+    min_size = 0
 
     vpc_zone_identifier = [for subnet in aws_subnet.elasticsearch-lab-pub: subnet.id]
     
