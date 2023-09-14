@@ -113,7 +113,7 @@ resource "aws_launch_template" "LogstashLC" {
         mount -t efs ${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch
         echo "${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch efs defaults,_netdev 0 0" >> /etc/fstab
         mkdir -p /tmp/testlogs
-        docker run -d --name -v /tmp/testlogs:/tmp/testlogs logstash-$HOSTNAME mamos88/logstash-v3
+        docker run -d --name logstash-$HOSTNAME -v /tmp/testlogs:/tmp/testlogs mamos88/logstash-v3
         EOF
      )
 }
