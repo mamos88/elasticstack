@@ -96,3 +96,24 @@ resource "aws_launch_template" "KibanaLC" {
         EOF
      )
 }
+
+# Logstash Launch Template
+resource "aws_launch_template" "LogstashLC" {
+    name = "LogstashLC"
+
+    description = "Logstash Amazon Linux Launch Template"
+    image_id = var.elasticsearch_client_amazon_ami_id
+    instance_type = var.client_instance_type
+    key_name = var.aws_key_name
+    vpc_security_group_ids = [aws_security_group.elasticsearch-sg.id]
+    user_data = base64encode(<<-EOF
+        #!/bin/bash
+        mkdir /var/lib/elasticsearch
+        yum install -y amazon-efs-utils
+        mount -t efs ${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch
+        echo "${aws_efs_file_system.elasticsearch.id}:/ /var/lib/elasticsearch efs defaults,_netdev 0 0" >> /etc/fstab
+        mkdir -p /tmp/testlogs
+        docker run -d --name -v /tmp/testlogs:/tmp/testlogs logstash-$HOSTNAME mamos88/logstash-v3
+        EOF
+     )
+}

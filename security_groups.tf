@@ -51,6 +51,14 @@ resource "aws_security_group" "elasticsearch-sg" {
     cidr_blocks = var.allowed_ip_network
   }
 
+  # HTTP
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
   egress {
     from_port   = 0
     to_port     = 65535

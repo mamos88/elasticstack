@@ -99,11 +99,33 @@ resource "aws_autoscaling_group" "KibanaASG" {
         version = "$Latest"
     }
 
-    # target_group_arns = ["${aws_lb_target_group.test.arn}"]
+    target_group_arns = ["${aws_lb_target_group.test.arn}"]
 
     tag {
       key = "Name"
       value = "Kibana"
+      propagate_at_launch = true
+    }
+}
+
+# Logstash ASG
+resource "aws_autoscaling_group" "LogstashASG" {
+    name = "LogstashASG"
+    max_size = 1
+    min_size = 1
+
+    vpc_zone_identifier = [for subnet in aws_subnet.elasticsearch-lab-pub: subnet.id]
+    
+    launch_template {
+        id = aws_launch_template.LogstashLC.id
+        version = "$Latest"
+    }
+
+    target_group_arns = ["${aws_lb_target_group.test.arn}"]
+
+    tag {
+      key = "Name"
+      value = "Logstash"
       propagate_at_launch = true
     }
 }

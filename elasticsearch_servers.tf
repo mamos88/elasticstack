@@ -19,6 +19,7 @@ resource "aws_instance" "elasticsearch-server-node" {
         sleep 120
         docker exec elasticsearch-server-$HOSTNAME /usr/share/elasticsearch/bin/elasticsearch-users useradd kibana_user -p ${var.password} -r kibana_system
         docker exec elasticsearch-server-$HOSTNAME /usr/share/elasticsearch/bin/elasticsearch-users useradd admin -p ${var.password} -r superuser
+        docker exec elasticsearch-server-$HOSTNAME /usr/share/elasticsearch/bin/elasticsearch-users useradd logstash -p ${var.password} -r superuser
         EOF
      )
   private_ip                  = "10.0.${count.index}.200"
