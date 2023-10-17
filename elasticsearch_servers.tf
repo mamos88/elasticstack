@@ -4,7 +4,7 @@ resource "aws_instance" "elasticsearch-server-node" {
   ami                         = var.elasticsearch_server_ami_id
   instance_type               = var.elasticsearch_server_instance_type
   key_name                    = var.aws_key_name
-  subnet_id                   = aws_subnet.elasticsearch-lab-pub[count.index].id
+  subnet_id                   = values(local.subnet_ids)[count.index]
   vpc_security_group_ids      = [aws_security_group.elasticsearch-sg.id]
   associate_public_ip_address = true
   user_data                   = base64encode(<<-EOF

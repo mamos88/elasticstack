@@ -4,7 +4,7 @@ resource "aws_autoscaling_group" "elasticsearchDataHotASG" {
     max_size = 1
     min_size = 1
 
-    vpc_zone_identifier = [for subnet in aws_subnet.elasticsearch-lab-pub: subnet.id]
+    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
     
     launch_template {
         id = aws_launch_template.ElasticsearchDataHotLC.id
@@ -26,7 +26,7 @@ resource "aws_autoscaling_group" "elasticsearchDataWarmASG" {
     max_size = 0
     min_size = 0
 
-    vpc_zone_identifier = [for subnet in aws_subnet.elasticsearch-lab-pub: subnet.id]
+    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
     
     launch_template {
         id = aws_launch_template.ElasticsearchDataWarmLC.id
@@ -48,7 +48,7 @@ resource "aws_autoscaling_group" "elasticsearchDataColdASG" {
     max_size = 0
     min_size = 0
 
-    vpc_zone_identifier = [for subnet in aws_subnet.elasticsearch-lab-pub: subnet.id]
+    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
     
     launch_template {
         id = aws_launch_template.ElasticsearchDataColdLC.id
@@ -70,7 +70,7 @@ resource "aws_autoscaling_group" "elasticsearchDataContentASG" {
     max_size = 1
     min_size = 1
 
-    vpc_zone_identifier = [for subnet in aws_subnet.elasticsearch-lab-pub: subnet.id]
+    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
     
     launch_template {
         id = aws_launch_template.ElasticsearchDataContentLC.id
@@ -92,7 +92,7 @@ resource "aws_autoscaling_group" "KibanaASG" {
     max_size = 1
     min_size = 1
 
-    vpc_zone_identifier = [for subnet in aws_subnet.elasticsearch-lab-pub: subnet.id]
+    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
     
     launch_template {
         id = aws_launch_template.KibanaLC.id
@@ -114,7 +114,7 @@ resource "aws_autoscaling_group" "LogstashASG" {
     max_size = 0
     min_size = 0
 
-    vpc_zone_identifier = [for subnet in aws_subnet.elasticsearch-lab-pub: subnet.id]
+    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
     
     launch_template {
         id = aws_launch_template.LogstashLC.id

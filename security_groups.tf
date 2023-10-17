@@ -1,6 +1,6 @@
 resource "aws_security_group" "elasticsearch-sg" {
   name   = "elasticstack-sg"
-  vpc_id = aws_vpc.elasticsearch-lab-vpc.id
+  vpc_id = data.aws_vpc.elasticsearch-lab-vpc.id
 
 # Start Elasticsearch ports
   ingress {
