@@ -7,9 +7,8 @@ data "aws_subnets" "elasticsearch-lab" {
 }
 
 data "aws_subnet" "elasticsearch-lab" {
-  # for_each = sort(toset(data.aws_subnets.elasticsearch-lab.ids))
-  for_each = { for idx, subnet_id in data.aws_subnets.elasticsearch-lab.ids: idx => subnet_id }
-  id      = each.value
+  for_each = toset(data.aws_subnets.elasticsearch-lab.ids)
+  id       = each.value
 }
 
 locals {

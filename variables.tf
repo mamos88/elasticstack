@@ -12,7 +12,7 @@ variable "password" {
 
 variable "client_instance_type" {
   description = "elasticsearch Client Instance Type"
-  default = "t2.small"
+  default     = "t2.small"
 }
 
 variable "elasticsearch_server_instance_type" {
@@ -51,15 +51,15 @@ variable "az_map" {
 
 # Load Balancer Variables
 variable "health_check" {
-   type = map(string)
-   default = {
-      "timeout"  = "10"
-      "interval" = "20"
-      "path"     = "/login"
-      "port"     = "5601"
-      "unhealthy_threshold" = "2"
-      "healthy_threshold" = "3"
-    }
+  type = map(string)
+  default = {
+    "timeout"             = "10"
+    "interval"            = "20"
+    "path"                = "/login"
+    "port"                = "5601"
+    "unhealthy_threshold" = "2"
+    "healthy_threshold"   = "3"
+  }
 }
 
 # These are variables you need to change before run time
@@ -75,19 +75,19 @@ variable "allowed_ip_network" {
 variable "elasticsearch_server_ami_id" {
   description = "AMI ID to use for elasticsearch server nodes"
   type        = string
-  default = "ami-05410cf0f076b18fa" # Modify this with the server AMI you created
+  default     = "ami-05410cf0f076b18fa" # Modify this with the server AMI you created
 }
 
 variable "elasticsearch_client_amazon_ami_id" {
   description = "AMI ID to use for elasticsearch server nodes"
   type        = string
-  default = "ami-05410cf0f076b18fa" # Modify this with the Amazon client AMI you created
+  default     = "ami-05410cf0f076b18fa" # Modify this with the Amazon client AMI you created
 }
 
 variable "elasticsearch_client_ubuntu_ami_id" {
   description = "AMI ID to use for elasticsearch server nodes"
   type        = string
-  default = "ami-0d608de721309a282" # Modify this with the ubuntu client AMI you created
+  default     = "ami-0d608de721309a282" # Modify this with the ubuntu client AMI you created
 }
 
 # This is your keypair name for connecting to the instance.  Change it to a valid keypair in our account/region.
@@ -99,5 +99,5 @@ variable "aws_key_name" {
 
 variable "profile" {
   description = "This is your AWS profile"
-  type = string
+  type        = string
 }

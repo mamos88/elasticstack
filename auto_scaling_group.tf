@@ -1,131 +1,131 @@
 # Elasticsearch Data Hot ASG
 resource "aws_autoscaling_group" "elasticsearchDataHotASG" {
-    name = "elasticsearchDataHotASG"
-    max_size = 1
-    min_size = 1
+  name     = "elasticsearchDataHotASG"
+  max_size = 1
+  min_size = 1
 
-    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
-    
-    launch_template {
-        id = aws_launch_template.ElasticsearchDataHotLC.id
-        version = "$Latest"
-    }
+  vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab : subnet.id]
 
-    # target_group_arns = ["${aws_lb_target_group.test.arn}"]
+  launch_template {
+    id      = aws_launch_template.ElasticsearchDataHotLC.id
+    version = "$Latest"
+  }
 
-    tag {
-      key = "Name"
-      value = "elasticsearch-Data-Hot"
-      propagate_at_launch = true
-    }
+  # target_group_arns = ["${aws_lb_target_group.test.arn}"]
+
+  tag {
+    key                 = "Name"
+    value               = "elasticsearch-Data-Hot"
+    propagate_at_launch = true
+  }
 }
 
 # Elasticsearch Data Warm ASG
 resource "aws_autoscaling_group" "elasticsearchDataWarmASG" {
-    name = "elasticsearchDataWarmASG"
-    max_size = 0
-    min_size = 0
+  name     = "elasticsearchDataWarmASG"
+  max_size = 0
+  min_size = 0
 
-    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
-    
-    launch_template {
-        id = aws_launch_template.ElasticsearchDataWarmLC.id
-        version = "$Latest"
-    }
+  vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab : subnet.id]
 
-    # target_group_arns = ["${aws_lb_target_group.test.arn}"]
+  launch_template {
+    id      = aws_launch_template.ElasticsearchDataWarmLC.id
+    version = "$Latest"
+  }
 
-    tag {
-      key = "Name"
-      value = "elasticsearch-Data-Warm"
-      propagate_at_launch = true
-    }
+  # target_group_arns = ["${aws_lb_target_group.test.arn}"]
+
+  tag {
+    key                 = "Name"
+    value               = "elasticsearch-Data-Warm"
+    propagate_at_launch = true
+  }
 }
 
 # Elasticsearch Data Cold ASG
 resource "aws_autoscaling_group" "elasticsearchDataColdASG" {
-    name = "elasticsearchDataColdASG"
-    max_size = 0
-    min_size = 0
+  name     = "elasticsearchDataColdASG"
+  max_size = 0
+  min_size = 0
 
-    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
-    
-    launch_template {
-        id = aws_launch_template.ElasticsearchDataColdLC.id
-        version = "$Latest"
-    }
+  vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab : subnet.id]
 
-    # target_group_arns = ["${aws_lb_target_group.test.arn}"]
+  launch_template {
+    id      = aws_launch_template.ElasticsearchDataColdLC.id
+    version = "$Latest"
+  }
 
-    tag {
-      key = "Name"
-      value = "elasticsearch-Data-Cold"
-      propagate_at_launch = true
-    }
+  # target_group_arns = ["${aws_lb_target_group.test.arn}"]
+
+  tag {
+    key                 = "Name"
+    value               = "elasticsearch-Data-Cold"
+    propagate_at_launch = true
+  }
 }
 
 # Elasticsearch Data Content ASG
 resource "aws_autoscaling_group" "elasticsearchDataContentASG" {
-    name = "elasticsearchDataContentASG"
-    max_size = 1
-    min_size = 1
+  name     = "elasticsearchDataContentASG"
+  max_size = 1
+  min_size = 1
 
-    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
-    
-    launch_template {
-        id = aws_launch_template.ElasticsearchDataContentLC.id
-        version = "$Latest"
-    }
+  vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab : subnet.id]
 
-    # target_group_arns = ["${aws_lb_target_group.test.arn}"]
+  launch_template {
+    id      = aws_launch_template.ElasticsearchDataContentLC.id
+    version = "$Latest"
+  }
 
-    tag {
-      key = "Name"
-      value = "elasticsearch-Data-Content"
-      propagate_at_launch = true
-    }
+  # target_group_arns = ["${aws_lb_target_group.test.arn}"]
+
+  tag {
+    key                 = "Name"
+    value               = "elasticsearch-Data-Content"
+    propagate_at_launch = true
+  }
 }
 
 # Kibana ASG
 resource "aws_autoscaling_group" "KibanaASG" {
-    name = "KibanaASG"
-    max_size = 1
-    min_size = 1
+  name     = "KibanaASG"
+  max_size = 1
+  min_size = 1
 
-    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
-    
-    launch_template {
-        id = aws_launch_template.KibanaLC.id
-        version = "$Latest"
-    }
+  vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab : subnet.id]
 
-    target_group_arns = ["${aws_lb_target_group.test.arn}"]
+  launch_template {
+    id      = aws_launch_template.KibanaLC.id
+    version = "$Latest"
+  }
 
-    tag {
-      key = "Name"
-      value = "Kibana"
-      propagate_at_launch = true
-    }
+  target_group_arns = ["${aws_lb_target_group.test.arn}"]
+
+  tag {
+    key                 = "Name"
+    value               = "Kibana"
+    propagate_at_launch = true
+  }
 }
 
 # Logstash ASG
 resource "aws_autoscaling_group" "LogstashASG" {
-    name = "LogstashASG"
-    max_size = 0
-    min_size = 0
+  name     = "LogstashASG"
+  max_size = 0
+  min_size = 0
 
-    vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab: subnet.id]
-    
-    launch_template {
-        id = aws_launch_template.LogstashLC.id
-        version = "$Latest"
-    }
+  vpc_zone_identifier = [for subnet in data.aws_subnet.elasticsearch-lab : subnet.id]
 
-    target_group_arns = ["${aws_lb_target_group.test.arn}"]
+  launch_template {
+    id      = aws_launch_template.LogstashLC.id
+    version = "$Latest"
+  }
 
-    tag {
-      key = "Name"
-      value = "Logstash"
-      propagate_at_launch = true
-    }
+  target_group_arns = ["${aws_lb_target_group.test.arn}"]
+
+  tag {
+    key                 = "Name"
+    value               = "Logstash"
+    propagate_at_launch = true
+  }
 }

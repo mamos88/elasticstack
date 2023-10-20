@@ -2,7 +2,7 @@ resource "aws_security_group" "elasticsearch-sg" {
   name   = "elasticstack-sg"
   vpc_id = data.aws_vpc.elasticsearch-lab-vpc.id
 
-# Start Elasticsearch ports
+  # Start Elasticsearch ports
   ingress {
     from_port   = 9200
     to_port     = 9200
@@ -20,7 +20,7 @@ resource "aws_security_group" "elasticsearch-sg" {
 
   # Start Kibana ports
 
-    ingress {
+  ingress {
     from_port   = 5601
     to_port     = 5601
     protocol    = "tcp"
@@ -66,7 +66,7 @@ resource "aws_security_group" "elasticsearch-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-    egress {
+  egress {
     from_port   = 0
     to_port     = 65535
     protocol    = "udp"
@@ -82,6 +82,6 @@ resource "aws_security_group" "elasticsearch-sg" {
   }
 
   tags = {
-    Terraform  = "true"
+    Terraform = "true"
   }
 }

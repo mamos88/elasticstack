@@ -7,9 +7,9 @@ resource "aws_efs_file_system" "elasticsearch" {
 }
 
 resource "aws_efs_mount_target" "elasticsearch_mount_target" {
-  count = var.subnet_count
-  file_system_id = aws_efs_file_system.elasticsearch.id
-  subnet_id = values(local.subnet_ids)[count.index]
+  count           = var.subnet_count
+  file_system_id  = aws_efs_file_system.elasticsearch.id
+  subnet_id       = values(local.subnet_ids)[count.index]
   security_groups = [aws_security_group.elasticsearch-sg.id]
 }
 
